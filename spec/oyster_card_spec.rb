@@ -28,37 +28,46 @@ describe Oystercard do
     #   subject.top_up(5)
     #   expect{subject.deduct(5)}.to change {subject.balance}.by(-5)
     # end
-
-    it "deducts fare when touched out" do
+    before do
       subject.top_up(1)
       subject.touch_in(:entry_station)
+    end
+
+    it "deducts fare when touched out" do
+      # subject.top_up(1)
+      # subject.touch_in(:entry_station)
       expect{ subject.touch_out(:exit_station) }.to change{ subject.balance }.by(-1)
     end 
 
     it 'forgets entry station when touched out' do
-      subject.top_up(1)
-      subject.touch_in(:entry_station)
+      # subject.top_up(1)
+      # subject.touch_in(:entry_station)
       subject.touch_out(:exit_station)
       expect(subject.entry_station).to eq nil
     end
 
     it 'saves exit station when touched out' do
-      subject.top_up(1)
-      subject.touch_in(:entry_station)
+      # subject.top_up(1)
+      # subject.touch_in(:entry_station)
       subject.touch_out(:exit_station)
       expect(subject.exit_station).to eq :exit_station
     end
   end
 
   describe "in_journey" do
-    it 'should return true if touched in' do
+    before do
       subject.top_up(1)
       subject.touch_in(:entry_station)
+    end
+
+    it 'should return true if touched in' do
+      # subject.top_up(1)
+      # subject.touch_in(:entry_station)
       expect(subject.in_journey).to eq true
     end
     it 'should return false if touched out' do
-      subject.top_up(1)
-      subject.touch_in(:entry_station)
+      # subject.top_up(1)
+      # subject.touch_in(:entry_station)
       subject.touch_out(:exit_station)
       expect(subject.in_journey).to eq false
     end
@@ -90,7 +99,6 @@ describe Oystercard do
       journey = {:entry_station => :entry_station, :exit_station => :exit_station}
       #expect(subject.journeys(entry_station, exit_station)).to eq journey
       expect(subject.journey_list).to include journey
-
     end
   end
 end
