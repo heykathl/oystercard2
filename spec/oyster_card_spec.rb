@@ -3,6 +3,7 @@ require 'oyster_card'
 describe Oystercard do
   
   let(:entry_station) {double :entry_station}
+  let(:exit_station) {double :exit_station}
 
   describe "balance" do
     it "respond to balance" do
@@ -31,14 +32,21 @@ describe Oystercard do
     it "deducts fare when touched out" do
       subject.top_up(1)
       subject.touch_in(:entry_station)
-      expect{ subject.touch_out }.to change{ subject.balance }.by(-1)
+      expect{ subject.touch_out(:exit_station) }.to change{ subject.balance }.by(-1)
     end 
 
     it 'forgets entry station when touched out' do
       subject.top_up(1)
       subject.touch_in(:entry_station)
-      subject.touch_out
+      subject.touch_out(:exit_station)
       expect(subject.entry_station).to eq nil
+    end
+
+    it 'saves exit station when touched out' do
+      subject.top_up(1)
+      subject.touch_in(:entry_station)
+      subject.touch_out(:exit_station)
+      expect(subject.exit_station).to eq :exit_station
     end
   end
 
@@ -51,7 +59,7 @@ describe Oystercard do
     it 'should return false if touched out' do
       subject.top_up(1)
       subject.touch_in(:entry_station)
-      subject.touch_out
+      subject.touch_out(:exit_station)
       expect(subject.in_journey).to eq false
     end
   end
@@ -65,6 +73,24 @@ describe Oystercard do
       subject.top_up(1)
       subject.touch_in(:entry_station)
       expect(subject.entry_station).to eq :entry_station
+    end
+  end
+
+  describe 'list of journeys' do
+    it 'should have an empty list of journeys by default' do
+      expect(subject.journey_list).to be_empty
+    end
+    
+    #let(:journey){ {entry_station: entry_station, exit_station: exit_station} }
+
+    it 'creates one journey after touching in and out' do
+      subject.top_up(1)
+      subject.touch_in(:entry_station)
+      subject.touch_out(:exit_station)
+      journey = {:entry_station => :entry_station, :exit_station => :exit_station}
+      #expect(subject.journeys(entry_station, exit_station)).to eq journey
+      expect(subject.journey_list).to include journey
+
     end
   end
 end
