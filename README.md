@@ -1,7 +1,16 @@
 # Oyster Card
 A program that allows users to utilise an oystercard to travel on TfL's transportation system.
 
-## How to use
+## Installation
+1. Fork this repo, and clone to your local machine
+2. Run the command `gem install bundler` (if you don't have bundler already)
+3. When the installation completes, run `bundle`
+
+## Features
+* Touch in and out of stations
+* Record a journey log
+* Top up money onto the card
+* Deducting fare and penalty fares based on touching in and out
 
 ## User stories
 
@@ -55,4 +64,14 @@ I need a penalty charge deducted if I fail to touch in or out
 In order to be charged the correct amount
 As a customer
 I need to have the correct fare calculated
+```
+
+## Tests
+There are a series of tests which can be run with the following (from the directory):
+```
+rspec
+```
+To run tests from specific class files, this can be done by:
+```
+rspec spec/<filename>.rb
 ```
