@@ -75,3 +75,6 @@ To run tests from specific class files, this can be done by:
 ```
 rspec spec/<filename>.rb
 ```
+
+## Domain Modeling
+![Screenshot 2022-03-03 at 10 32 16](https://user-images.githubusercontent.com/74867241/157249567-1ee1fc12-e4f8-46b2-83a7-1ffbfac67e48.png)
