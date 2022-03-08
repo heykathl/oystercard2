@@ -77,4 +77,4 @@ rspec spec/<filename>.rb
 ```
 
 ## Domain Modeling
-![Screenshot 2022-03-03 at 10 32 16](https://user-images.githubusercontent.com/74867241/157249567-1ee1fc12-e4f8-46b2-83a7-1ffbfac67e48.png)
+![Screenshot 2022-03-08 at 13 40 11](https://user-images.githubusercontent.com/74867241/157249956-d73f88a5-b618-4e38-82de-306737e22193.png)
